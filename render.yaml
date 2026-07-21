@@ -1,0 +1,18 @@
+services:
+  - type: web
+    name: todo-api
+    runtime: node
+    plan: free
+    buildCommand: corepack enable && pnpm install --frozen-lockfile && pnpm --filter backend build
+    startCommand: pnpm --filter backend start:prod
+    envVars:
+      - key: DATABASE_URL
+        value: file:/data/prod.db
+      - key: CORS_ORIGIN
+        sync: false
+      - key: NODE_VERSION
+        value: 22
+    disk:
+      name: todo-data
+      mountPath: /data
+      sizeGB: 1
