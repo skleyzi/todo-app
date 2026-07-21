@@ -7,12 +7,8 @@ services:
     startCommand: pnpm --filter backend start:prod
     envVars:
       - key: DATABASE_URL
-        value: file:/data/prod.db
+        value: file:./prod.db
       - key: CORS_ORIGIN
         sync: false
       - key: NODE_VERSION
         value: 22
-    disk:
-      name: todo-data
-      mountPath: /data
-      sizeGB: 1
